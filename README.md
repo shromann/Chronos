@@ -14,5 +14,5 @@ Some key AI features we provide are,
 ---
 **CHRONOS** is developed by [RAID](https://www.linkedin.com/company/raidev/)
 - Machine Learning Engineer: [Shromann Majumder](https://www.linkedin.com/in/shromannmajumder/)
-- Full-Stack Developer: [Weng Chin](https://www.linkedin.com/in/wengjaechin/)
+- Full-Stack Developer: [Weng Jae Chin](https://www.linkedin.com/in/wengjaechin/)
 - UX/UI Designer: [Yuqi Zheng](https://www.linkedin.com/in/yuqi-zheng/)
