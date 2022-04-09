@@ -1,7 +1,3 @@
-/**
- * Use MUI: Stack -> Item 
- */
-
 import React from 'react';
 import { ButtonGroup } from '@mui/material';
 import FormatButton from './FormatButton';

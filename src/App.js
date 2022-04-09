@@ -1,15 +1,12 @@
 import './App.css';
 import getAllEvents from './server/getAllEvents';
-import FormatPicker from './components/FormatPicker';
+import Header from './components/Header';
 
 function App() {
   getAllEvents();
   return (
     <div className="App">
-      <header className="App-header">
-        Chronos
-        <FormatPicker />
-      </header>
+      <Header />
     </div>
   );
 }
