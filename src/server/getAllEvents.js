@@ -7,6 +7,7 @@ const getAllEvents = async() => {
     querySnapshot.forEach((doc) => {
         console.log(doc.data());
     });
+    return querySnapshot;
   } catch (e) {
     console.log(e);
   }
