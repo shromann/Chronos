@@ -1,15 +1,16 @@
 /** @jsxImportSource @emotion/react */
-import React from 'react';
+import styled from '@emotion/styled';
 import { css } from '@emotion/react';
 
 import RowBlock from './RowBlock';
+import HourLabels from './HourLabels';
 
-const styles = css`
-  max-width: 755px;
+const Container = styled.div`
+  max-width: 45vw;
   margin: 20px auto 0 auto;
   max-height: 87vh;
-  max-width: 760px;
-  overflow-y: auto;
+  overflow-y: scroll;
+  display: flex;
 `;
 
 const NUM_HOURS = 24;
@@ -22,9 +23,14 @@ const CalendarColumn = () => {
   }
 
   return (
-  <div css={styles} >
-    { allBlocks }
-  </div>
+  <Container>
+    <HourLabels />
+    <div css={css`
+      margin-top: 10px;
+    `}>
+      { allBlocks }
+    </div>
+  </Container>
 )};
 
 export default CalendarColumn;
