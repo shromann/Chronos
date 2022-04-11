@@ -7,6 +7,9 @@ import RowBlock from './RowBlock';
 const styles = css`
   max-width: 755px;
   margin: 20px auto 0 auto;
+  max-height: 87vh;
+  max-width: 760px;
+  overflow-y: auto;
 `;
 
 const NUM_HOURS = 24;
