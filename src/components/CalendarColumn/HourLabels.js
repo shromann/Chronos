@@ -27,13 +27,10 @@ const HourLabels = () => {
 
   allHours.forEach(h => {
     hourComponents.push(
-      <>
-        <p>{h}</p>
-      </>
+      <p>{h}</p>
     );
   })
 
-  console.log(allHours);
 
   return (
     <Container>
