@@ -3,12 +3,15 @@ import getAllEvents from './server/getAllEvents';
 import Header from './components/Header';
 import CalendarColumn from './components/CalendarColumn';
 
+// TODO: create test cases
+const testEvents = [];
+
 function App() {
-  getAllEvents();
+  // getAllEvents();
   return (
     <div className="App">
       <Header />
-      <CalendarColumn />
+      <CalendarColumn events={testEvents} />
     </div>
   );
 }
