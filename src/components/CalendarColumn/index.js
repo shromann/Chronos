@@ -1,9 +1,10 @@
 /** @jsxImportSource @emotion/react */
-import styled from '@emotion/styled';
-import { css } from '@emotion/react';
+import styled from "@emotion/styled";
+import { css } from "@emotion/react";
 
-import RowBlock from './RowBlock';
-import HourLabels from './HourLabels';
+import EventBox from "./EventBox";
+import RowBlock from "./RowBlock";
+import HourLabels from "./HourLabels";
 
 const Container = styled.div`
   max-width: 80vw;
@@ -17,7 +18,7 @@ const Content = styled.article`
   width: 860px;
   margin: 20px auto 0 auto;
   display: flex;
-`
+`;
 
 const NUM_HOURS = 24;
 
@@ -29,16 +30,20 @@ const CalendarColumn = () => {
   }
 
   return (
-  <Container>
-    <Content>
-      <HourLabels />
-      <div css={css`
-        margin-top: 10px;
-      `}>
-        { allBlocks }
-      </div>
-    </Content>
-  </Container>
-)};
+    <Container>
+      <EventBox height="50px" width="50px"/>
+      <Content>
+        <HourLabels />
+        <div
+          css={css`
+            margin-top: 10px;
+          `}
+        >
+          {allBlocks}
+        </div>
+      </Content>
+    </Container>
+  );
+};
 
 export default CalendarColumn;
