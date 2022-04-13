@@ -31,15 +31,15 @@ const CalendarColumn = () => {
 
   return (
     <Container>
-      <EventBox height="50px" width="50px"/>
       <Content>
         <HourLabels />
         <div
           css={css`
-            margin-top: 10px;
+          margin-top: 10px;
           `}
         >
-          {allBlocks}
+          {/* {allBlocks} */}
+          <EventBox height="50px" top="755px"/>
         </div>
       </Content>
     </Container>
