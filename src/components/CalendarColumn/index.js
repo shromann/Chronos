@@ -63,9 +63,13 @@ const CalendarColumn = ({ events }) => {
           margin-top: 10px;
           `}
         >
+
           {/* {allBlocks} */}
           {allEventComponents}
-          <EventBox height="50px" top="755px"/>
+
+          {/* NOTE: startTime and duration here are scaled to 1440 ticks.
+          Will change to pass in time in and scale internally the EventBox component */}
+          <EventBox startTime={500} duration={50}/>
         </div>
       </Content>
     </Container>

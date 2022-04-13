@@ -6,6 +6,7 @@ const RowBlock = ({ hour }) => {
     <Box 
       sx={{
         width: '755px',
+        // BUG: MAGIC NUMBER
         height: 54,
         backgroundColor: "transparent",
         border: '1px solid #B9B9B9',
