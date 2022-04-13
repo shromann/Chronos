@@ -1,0 +1,1 @@
+export const DAY_CALENDAR_WIDTH = '755px';
