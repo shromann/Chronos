@@ -13,7 +13,7 @@ const events = [
   // },
   {
     start_time: new Date('2022-04-14T12:00:00'),
-    end_time: new Date('2022-04-14T13:00:00'),
+    end_time: new Date('2022-04-14T13:30:00'),
   },
   {
     start_time: new Date('2022-04-14T13:00:00'),

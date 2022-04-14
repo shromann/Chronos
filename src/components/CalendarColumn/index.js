@@ -42,11 +42,7 @@ const CalendarColumn = ({ events }) => {
           id="dayCalendar"
         >
 
-          {/* {allBlocks} */}
-
-          {/* NOTE: startTime and duration here are scaled to 1440 ticks.
-          Will change to pass in time in and scale internally the EventBox component */}
-          {/* <EventBox event={events[0]} /> */}
+          {allBlocks}
           {events.map(event => <EventBox event={event} />)}
         </div>
       </Content>
