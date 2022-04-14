@@ -4,8 +4,8 @@ import CalendarColumn from './components/CalendarColumn';
 
 const testEvents = [
   {
-    start_time: currTime,
-    end_time: new Date(currTime.getTime() + 60*60000),
+    start_time: new Date('2022-04-14T13:00:00'),
+    end_time: new Date('2022-04-14T15:30:00'),
   }
 ];
 
@@ -14,7 +14,7 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <CalendarColumn events={testEvents} />
+      <CalendarColumn events={testEvents}/>
     </div>
   );
 }

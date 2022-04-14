@@ -10,6 +10,7 @@ import {
 
 const EventBox = ({ event }) => {
   const duration = getEventDuration(event.start_time, event.end_time);
+  console.log(event);
   return <Box
     sx={{
       width: DAY_CALENDAR_WIDTH,

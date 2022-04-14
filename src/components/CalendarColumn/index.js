@@ -38,6 +38,7 @@ const CalendarColumn = ({ events }) => {
           css={css`
           margin-top: 10px;
           `}
+          id="dayCalendar"
         >
 
           {/* {allBlocks} */}
