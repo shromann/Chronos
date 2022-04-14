@@ -23,12 +23,13 @@ const HourLabels = () => {
       allHours.push(j + ' ' + periods[i]);
     }
   }
-  allHours.push(NUM_HOURS + ' ' + periods[1]);
 
+  let i = 0;
   allHours.forEach(h => {
     hourComponents.push(
-      <p>{h}</p>
+      <p key={i}>{h}</p>
     );
+    i++;
   })
 
 
