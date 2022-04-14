@@ -17,7 +17,7 @@ const EventBox = ({ event }) => {
       height: eventHeight(duration, DAY_CALENDAR_HEIGHT),
       backgroundColor: 'gray',
       border: '1.5px solid #B9B9B9',
-      position: 'relative',
+      position: 'absolute',
       top: eventPlacement(event.start_time, DAY_CALENDAR_HEIGHT),
       opacity: '0.5'
     }}

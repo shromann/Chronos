@@ -18,6 +18,7 @@ const Content = styled.article`
   width: 860px;
   margin: 20px auto 0 auto;
   display: flex;
+  position: relative
 `;
 
 const NUM_HOURS = 24;
