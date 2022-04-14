@@ -10,6 +10,7 @@ const RowBlock = ({ hour }) => {
         backgroundColor: "transparent",
         border: '1px solid #B9B9B9',
         margin: '-1px auto',
+        zIndex: 0
       }}
     />
   )
