@@ -44,7 +44,7 @@ const CalendarColumn = ({ events }) => {
 
           {/* NOTE: startTime and duration here are scaled to 1440 ticks.
           Will change to pass in time in and scale internally the EventBox component */}
-          <EventBox startTime={500} duration={50}/>
+          <EventBox event={events[0]} />
         </div>
       </Content>
     </Container>

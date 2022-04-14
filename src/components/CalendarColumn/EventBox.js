@@ -2,9 +2,16 @@ import React from 'react';
 import { Box } from '@mui/material';
 
 import { DAY_CALENDAR_WIDTH, DAY_CALENDAR_HEIGHT } from '../utils/constants';
-import { eventHeight, eventPlacement } from '../utils/eventTimeToHeight';
+import { 
+  eventHeight, 
+  eventPlacement, 
+  getEventDuration, 
+  timeToMinutes
+} from '../utils/eventTimeToHeight';
 
-const EventBox = ({startTime, duration}) => {
+const EventBox = ({ event }) => {
+  const startTime = timeToMinutes(event.start_time);
+  const duration = getEventDuration(event.start_time, event.end_time);
   return <Box
     sx={{
       width: DAY_CALENDAR_WIDTH,
