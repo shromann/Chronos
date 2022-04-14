@@ -19,6 +19,7 @@ const EventBox = ({ event }) => {
       border: '1.5px solid #B9B9B9',
       position: 'relative',
       top: eventPlacement(event.start_time, DAY_CALENDAR_HEIGHT),
+      opacity: '0.5'
     }}
   />
 }
