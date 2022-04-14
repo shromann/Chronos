@@ -9,7 +9,8 @@ export const eventHeight = (duration, calHeight) => {
 
 export const eventPlacement = (startTime, calHeight) => {
   // returns the UI start position. i.e where the event should start
-  return eventHeight(startTime, calHeight); 
+  const inMinutes = timeToMinutes(startTime);
+  return eventHeight(inMinutes, calHeight); 
 }
 
 export const getEventDuration = (start, end) => (

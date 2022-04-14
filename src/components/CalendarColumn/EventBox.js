@@ -6,11 +6,9 @@ import {
   eventHeight, 
   eventPlacement, 
   getEventDuration, 
-  timeToMinutes
 } from '../utils/eventTimeToHeight';
 
 const EventBox = ({ event }) => {
-  const startTime = timeToMinutes(event.start_time);
   const duration = getEventDuration(event.start_time, event.end_time);
   return <Box
     sx={{
@@ -19,7 +17,7 @@ const EventBox = ({ event }) => {
       backgroundColor: 'gray',
       border: '1.5px solid #B9B9B9',
       position: 'relative',
-      top: eventPlacement(startTime, DAY_CALENDAR_HEIGHT),
+      top: eventPlacement(event.start_time, DAY_CALENDAR_HEIGHT),
     }}
   />
 }
