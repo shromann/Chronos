@@ -1,9 +1,6 @@
 import './App.css';
-import getAllEvents from './server/getAllEvents';
 import Header from './components/Header';
 import CalendarColumn from './components/CalendarColumn';
-
-const currTime = new Date();
 
 const testEvents = [
   {
