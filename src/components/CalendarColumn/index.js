@@ -1,4 +1,5 @@
 import React from 'react';
+import { useRef, useState, useEffect } from 'react';
 import styled from '@emotion/styled';
 
 import EventBox from './EventBox';
@@ -23,6 +24,17 @@ const Content = styled.article`
 const NUM_HOURS = 24;
 
 const CalendarColumn = ({ events }) => {
+  const calendarRef = useRef();
+
+  const [height, setHeight] = useState(0);
+
+  const getCalendarHeight = () => {
+    setHeight(calendarRef.current.clientHeight);
+  };
+
+  useEffect(() => {
+    getCalendarHeight();
+  });
   // Stores components
   const allBlocks = [];
 
@@ -32,13 +44,13 @@ const CalendarColumn = ({ events }) => {
 
   return (
     <Container>
-      <Content>
+      <Content ref={calendarRef} >
         <HourLabels />
         <div
           id="dayCalendar"
         >
           {allBlocks}
-          {events.map(event => <EventBox event={event} />)}
+          {events.map(event => <EventBox event={event} maxHeight={height} />)}
         </div>
       </Content>
     </Container>
