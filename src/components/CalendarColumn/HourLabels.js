@@ -5,11 +5,17 @@ const NUM_HOURS = 12;
 const periods = ['AM', 'PM'];
 
 const Container = styled.div`
-  margin-right: 1rem;
+  div {
+    height: 54px;
+    padding-right: 1em;
+    text-align: right;
+  }
 
   p {
-    margin-top: 0;
-    margin-bottom: 36.5px;
+    margin: 0;
+    display: block;
+    position: relative;
+    top: -6px;
   }
 `;
 
@@ -27,7 +33,9 @@ const HourLabels = () => {
   let i = 0;
   allHours.forEach(h => {
     hourComponents.push(
-      <p key={i}>{h}</p>
+      <div>
+        <p key={i}>{h}</p>
+      </div>
     );
     i++;
   })
