@@ -8,7 +8,7 @@ const periods = ['AM', 'PM'];
 
 const Container = styled.div`
   div {
-    height: ${CALENDAR_ROW_GAP};
+    height: ${CALENDAR_ROW_GAP + 'px'};
     padding-right: 1em;
     text-align: right;
     border: 0.5px solid transparent;
