@@ -35,7 +35,7 @@ const EventBox = ({ event }) => {
   console.log(event);
   return <Box
     sx={{
-      width: DAY_CALENDAR_WIDTH,
+      width: DAY_CALENDAR_WIDTH + 'px',
       height: eventHeight(duration, DAY_CALENDAR_HEIGHT),
       backgroundColor: 'gray',
       position: 'absolute',
