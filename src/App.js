@@ -12,10 +12,12 @@ const events = [
   //   end_time: new Date('2022-04-14T12:00:00'),
   // },
   {
+    name: 'Event 1',
     start_time: new Date('2022-04-14T12:00:00'),
     end_time: new Date('2022-04-14T13:00:00'),
   },
   {
+    name: 'Event 2',
     start_time: new Date('2022-04-14T13:00:00'),
     end_time: new Date('2022-04-14T14:00:00'),
   }
