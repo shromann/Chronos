@@ -1,6 +1,5 @@
 /** @jsxImportSource @emotion/react */
 import styled from "@emotion/styled";
-import { css } from "@emotion/react";
 
 import EventBox from "./EventBox";
 import RowBlock from "./RowBlock";
@@ -36,9 +35,6 @@ const CalendarColumn = ({ events }) => {
       <Content>
         <HourLabels />
         <div
-          css={css`
-          margin-top: 10px;
-          `}
           id="dayCalendar"
         >
 
