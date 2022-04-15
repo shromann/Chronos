@@ -43,7 +43,8 @@ const EventBox = ({ event }) => {
       textAlign: 'left',
       // border: '1.5px solid #B9B9B9',
       // opacity: '0.5'
-      display: 'block'
+      display: 'block',
+      margin: '-1px auto'
     }}>
       <EventName>{event.name}</EventName>
       <EventTimes>{eventTimes(event)}</EventTimes>
