@@ -5,3 +5,5 @@ export const DAY_CALENDAR_HEIGHT = 1343.5;
 
 // unit: mins in 24 hours
 export const DAY_TICKS = 1440;
+
+export const CALENDAR_ROW_GAP = "54px";
