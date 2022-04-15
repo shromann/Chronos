@@ -1,9 +1,9 @@
-/** @jsxImportSource @emotion/react */
-import styled from "@emotion/styled";
+import React from 'react';
+import styled from '@emotion/styled';
 
-import EventBox from "./EventBox";
-import RowBlock from "./RowBlock";
-import HourLabels from "./HourLabels";
+import EventBox from './EventBox';
+import RowBlock from './RowBlock';
+import HourLabels from './HourLabels';
 
 const Container = styled.div`
   max-width: 80vw;
