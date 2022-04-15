@@ -10,15 +10,13 @@ import {
 } from '../utils/eventTimeToHeight';
 
 const EventName = styled.div`
-  margin-left: 15px;  
-  margin-top: 6px;
+  margin: 1% 1%;
   color: white;
   font-family: 'Roboto', sans-serif;
 `;
 
 const EventTimes = styled.div`
-  margin-left: 15px;
-  margin-top: 5px;
+  margin: 1% 1%;
   color: white;
   font-family: 'Roboto', sans-serif
 `;
