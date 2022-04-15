@@ -37,7 +37,6 @@ const CalendarColumn = ({ events }) => {
         <div
           id="dayCalendar"
         >
-
           {allBlocks}
           {events.map(event => <EventBox event={event} />)}
         </div>

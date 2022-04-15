@@ -21,6 +21,11 @@ const EventTimes = styled.div`
   font-family: 'Roboto', sans-serif
 `;
 
+<<<<<<< HEAD
+=======
+// 
+
+>>>>>>> 9f6f7236f4d9d2605913924ece06b7ea9d0219df
 const eventTimeDetails = (time) => {
   return (time.getHours() % 12 === 0 ? 12 : time.getHours() % 12) + ':' + time.getMinutes() + (time.getMinutes() < 10 ? '0' : '') + ' ' + (time.getHours() <= 12 ? 'am' : 'pm');
 }
@@ -42,7 +47,11 @@ const EventBox = ({ event }) => {
       top: eventPlacement(event.start_time, DAY_CALENDAR_HEIGHT),
       textAlign: 'left',
       // border: '1.5px solid #B9B9B9',
+<<<<<<< HEAD
       // opacity: '0.5'
+=======
+      // opacity: '1'
+>>>>>>> 9f6f7236f4d9d2605913924ece06b7ea9d0219df
       display: 'block'
     }}>
       <EventName>{event.name}</EventName>
