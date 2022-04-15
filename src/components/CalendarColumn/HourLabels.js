@@ -14,7 +14,7 @@ const Container = styled.div`
     border: 0.5px solid transparent;
   }
 
-  p {
+  time {
     margin: 0;
     display: block;
     position: relative;
@@ -37,7 +37,7 @@ const HourLabels = () => {
   allHours.forEach(h => {
     hourComponents.push(
       <div key={i}>
-        <p>{h}</p>
+        <time dateTime={i + ':00'}>{h}</time>
       </div>
     );
     i++;
