@@ -11,6 +11,7 @@ const Container = styled.div`
     height: ${CALENDAR_ROW_GAP};
     padding-right: 1em;
     text-align: right;
+    border: 0.5px solid transparent;
   }
 
   p {
