@@ -1,5 +1,6 @@
 // unit: px
-export const DAY_CALENDAR_WIDTH = 757;
+export const DAY_CALENDAR_WIDTH = 755;
+
 export const CALENDAR_ROW_GAP = 54;
 export const ROW_GAP_BORDER_SIZE = 1;
 // export const DAY_CALENDAR_HEIGHT = 1325;
