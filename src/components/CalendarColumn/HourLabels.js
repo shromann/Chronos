@@ -1,24 +1,25 @@
 import React from 'react';
 import styled from '@emotion/styled';
 
-import { CALENDAR_ROW_GAP } from '../utils/constants';
+import { CALENDAR_ROW_GAP, ROW_GAP_BORDER_SIZE} from '../utils/constants';
 
 const NUM_HOURS = 12;
 const periods = ['AM', 'PM'];
 
 const Container = styled.div`
   div {
-    height: ${CALENDAR_ROW_GAP + 'px'};
+    height: ${CALENDAR_ROW_GAP +  'px'};
     padding-right: 1em;
     text-align: right;
-    border: 0.5px solid transparent;
+    border: ${ROW_GAP_BORDER_SIZE + "px solid transparent"};
+    // margin: -1px 0px;
   }
 
   time {
     margin: 0;
     display: block;
     position: relative;
-    top: -10px;
+    top: -8px;
   }
 `;
 

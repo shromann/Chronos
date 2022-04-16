@@ -6,17 +6,18 @@ import { DAY_CALENDAR_WIDTH } from '../utils/constants';
 import { 
   eventHeight, 
   eventPlacement, 
-  getEventDuration, 
+  getEventDuration,
+  timeToMinutes
 } from '../utils/eventTimeToHeight';
 
 const EventName = styled.div`
-  margin: 1% 1%;
+  margin: 0.6% 1%;
   color: white;
   font-family: 'Roboto', sans-serif;
 `;
 
 const EventTimes = styled.div`
-  margin: 1% 1%;
+  margin: 0.6% 1%;
   color: white;
   font-family: 'Roboto', sans-serif
 `;
@@ -37,14 +38,15 @@ const EventBox = ({ event, maxHeight }) => {
     sx={{
       width: DAY_CALENDAR_WIDTH + 'px',
       height: eventHeight(duration, maxHeight),
-      backgroundColor: 'gray',
+      backgroundColor: `rgb(0, 0, 0, 0.5)`,
       position: 'absolute',
       top: eventPlacement(event.start_time, maxHeight),
       textAlign: 'left',
-      // borderBottom: '1.5px solid #B9B9B9',
-      opacity: '0.5',
+      border: '0.5px solid black',
       display: 'block',
-      margin: '-1px auto'
+      margin: '0px auto',
+      zIndex: timeToMinutes(event.start_time),
+      borderRadius: 7 + 'px',
     }}>
       <EventName>{event.name}</EventName>
       <EventTimes>{eventTimes(event)}</EventTimes>

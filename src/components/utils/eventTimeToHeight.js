@@ -4,13 +4,14 @@ import { DAY_TICKS, ROW_GAP_BORDER_SIZE} from "./constants";
 export const eventHeight = (duration, calHeight) => {
   // returns the UI Height of an event based 
   // on its duration and the calHeight.
-  return (calHeight / DAY_TICKS * duration) + 'px';
+  return (calHeight / DAY_TICKS * duration) - ROW_GAP_BORDER_SIZE + 'px';
 }
 
 export const eventPlacement = (startTime, calHeight) => {
   // returns the UI start position. i.e where the event should start
   const inMinutes = timeToMinutes(startTime);
-  return (calHeight / DAY_TICKS * inMinutes) + ROW_GAP_BORDER_SIZE + 1 + 'px';
+  console.log(inMinutes)
+  return (calHeight / DAY_TICKS * inMinutes) + ROW_GAP_BORDER_SIZE + 'px';
 
 }
 
