@@ -18,7 +18,7 @@ const Container = styled.div`
     margin: 0;
     display: block;
     position: relative;
-    top: -6px;
+    top: -10px;
   }
 `;
 

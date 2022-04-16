@@ -41,8 +41,8 @@ const EventBox = ({ event, maxHeight }) => {
       position: 'absolute',
       top: eventPlacement(event.start_time, maxHeight),
       textAlign: 'left',
-      // border: '1.5px solid #B9B9B9',
-      // opacity: '0.5'
+      // borderBottom: '1.5px solid #B9B9B9',
+      opacity: '0.5',
       display: 'block',
       margin: '-1px auto'
     }}>

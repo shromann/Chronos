@@ -8,10 +8,10 @@ const RowBlock = ({ hour }) => {
     <Box 
       sx={{
         width: DAY_CALENDAR_WIDTH + 'px',
-        height: CALENDAR_ROW_GAP + 'px',
+        height: CALENDAR_ROW_GAP+ 'px',
         backgroundColor: "transparent",
-        border: ROW_GAP_BORDER_SIZE + 'px solid #B9B9B9',
-        margin: '-1px',
+        borderTop: ROW_GAP_BORDER_SIZE + 'px solid #B9B9B9',
+        margin: ROW_GAP_BORDER_SIZE + 'px 0px',
       }}
     />
   )

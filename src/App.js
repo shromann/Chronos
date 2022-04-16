@@ -6,12 +6,12 @@ const events = [
   {
     name: "Event 1",
     start_time: new Date('2022-04-14T05:00:00'),
-    end_time: new Date('2022-04-14T10:30:00'),
+    end_time: new Date('2022-04-14T10:00:00'),
   },
   {
     name: "Event 2",
     start_time: new Date('2022-04-14T11:00:00'),
-    end_time: new Date('2022-04-14T12:00:00'),
+    end_time: new Date('2022-04-14T13:30:00'),
   },
   {
     name: "Event 3",
