@@ -43,7 +43,6 @@ const HourLabels = () => {
     i++;
   })
 
-
   return (
     <Container>
       {hourComponents}
