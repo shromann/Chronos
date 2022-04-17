@@ -47,7 +47,6 @@ const theme = createTheme({
   },
 });
 
-
 const DayCalendar = ({ events }) => {
   // Get height of entire calendar to calculate position of events
   const calendarRef = useRef();
@@ -71,6 +70,21 @@ const DayCalendar = ({ events }) => {
   const handleCloseForm = () => {
     setFormAnchor(null);
   }
+
+  const [newEvent, setNewEvent] = useState({
+    title: '',
+    startDate: '',
+    endDate: '',
+    focus: 0
+  })
+
+  const handleFormChange = (event) => {
+    const { name } = event.target;
+    setNewEvent({
+      ...newEvent,
+      [name]: event.target.value,
+    });
+  };
 
   return (
     <ThemeProvider theme={theme}>
@@ -103,6 +117,28 @@ const DayCalendar = ({ events }) => {
         <h2>Add New Event</h2>
         <FormControl>
           <TextField id="event-title" label="Event Title" variant="outlined" />
+          <TextField
+            id="start-time"
+            label="Start Time"
+            type="datetime-local"
+            sx={{ width: 250 }}
+            InputLabelProps={{
+              shrink: true,
+            }}
+            name="startDate"
+            onChange={handleFormChange}
+          />
+          <TextField
+            id="end-time"
+            label="End Time"
+            type="datetime-local"
+            sx={{ width: 250 }}
+            InputLabelProps={{
+              shrink: true,
+            }}
+            name="endDate"
+            onChange={handleFormChange}
+          />
         </FormControl>
       </Popover>
       <Container>
