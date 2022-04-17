@@ -1,6 +1,5 @@
 import './App.css';
-import Header from './components/Header';
-import CalendarColumn from './components/CalendarColumn';
+import DayCalendar from './containers/DayCalendar';
 
 const events = [
   {
@@ -24,8 +23,7 @@ function App() {
   // getAllEvents();
   return (
     <div className="App">
-      <Header />
-      <CalendarColumn events={events}/>
+      <DayCalendar events={events}/>
     </div>
   );
 }

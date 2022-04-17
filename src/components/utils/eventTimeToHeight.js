@@ -10,7 +10,6 @@ export const eventHeight = (duration, calHeight) => {
 export const eventPlacement = (startTime, calHeight) => {
   // returns the UI start position. i.e where the event should start
   const inMinutes = timeToMinutes(startTime);
-  console.log(inMinutes)
   return (calHeight / DAY_TICKS * inMinutes) + ROW_GAP_BORDER_SIZE + 'px';
 
 }
