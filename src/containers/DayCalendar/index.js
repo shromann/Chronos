@@ -3,9 +3,8 @@ import { useRef, useState, useEffect } from 'react';
 import styled from '@emotion/styled';
 
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import { FormControl, TextField, Popover } from '@mui/material';
+import { FormControl, TextField, Popover, Button } from '@mui/material';
 
-import Button from '../../components/Button';
 import FormatPicker from '../../components/FormatPicker';
 import Header from '../../components/Header';
 import EventBox from './EventBox';
@@ -31,16 +30,12 @@ const Calendar = styled.article`
   position: relative;
 `;
 
-const EventFormButton = styled(Button)`
-  margin: 0 auto;
-`;
-
 const theme = createTheme({
   components: {
     MuiPopover: {
       styleOverrides: {
         paper: {
-          padding: '5em',
+          padding: '2em',
         },
       },
     },
@@ -48,6 +43,9 @@ const theme = createTheme({
 });
 
 const DayCalendar = ({ events }) => {
+
+  const [allEvents, setAllEvents] = useState(events);
+
   // Get height of entire calendar to calculate position of events
   const calendarRef = useRef();
   const [height, setHeight] = useState(0);
@@ -72,17 +70,35 @@ const DayCalendar = ({ events }) => {
   }
 
   const [newEvent, setNewEvent] = useState({
-    title: '',
-    startDate: '',
-    endDate: '',
+    name: '',
+    start_time: new Date(),
+    end_time: new Date(),
     focus: 0
-  })
+  });
 
-  const handleFormChange = (event) => {
+  const handleFormChange = event => {
     const { name } = event.target;
+    let value;
+    if (name === 'start_time' || name === 'end_time') {
+      value = new Date(event.target.value);
+    } else {
+      value = event.target.value;
+    }
     setNewEvent({
       ...newEvent,
-      [name]: event.target.value,
+      [name]: value,
+    });
+  };
+
+  const handleAddEvent = () => {
+    allEvents.push(newEvent);
+    setAllEvents(allEvents);
+    setFormAnchor(null);
+    setNewEvent({
+      title: '',
+      start_time: new Date(),
+      end_time: new Date(),
+      focus: 0
     });
   };
 
@@ -90,57 +106,78 @@ const DayCalendar = ({ events }) => {
     <ThemeProvider theme={theme}>
       <Header />
       <FormatPicker/>
-      <EventFormButton
-        aria-controls={formOpen ? 'add-event-form' : undefined}
-        aria-haspopup="true"
-        aria-expanded={formOpen ? 'true' : undefined}
-        onClick={handleOpenForm}
-      >
-        +
-      </EventFormButton>
-      <Popover
-        id="add-event-form"
-        aria-labelledby="add-event-form"
-        anchorEl={formAnchor}
-        open={formOpen}
-        onClose={handleCloseForm}
-        anchorOrigin={{
-          vertical: 'top',
-          horizontal: 'right',
-        }}
-        transformOrigin={{
-          vertical: 'top',
-          horizontal: 'left',
-        }}
-        disableScrollLock
-      >
-        <h2>Add New Event</h2>
-        <FormControl>
-          <TextField id="event-title" label="Event Title" variant="outlined" />
-          <TextField
-            id="start-time"
-            label="Start Time"
-            type="datetime-local"
-            sx={{ width: 250 }}
-            InputLabelProps={{
-              shrink: true,
-            }}
-            name="startDate"
-            onChange={handleFormChange}
-          />
-          <TextField
-            id="end-time"
-            label="End Time"
-            type="datetime-local"
-            sx={{ width: 250 }}
-            InputLabelProps={{
-              shrink: true,
-            }}
-            name="endDate"
-            onChange={handleFormChange}
-          />
-        </FormControl>
-      </Popover>
+      <Content>
+        <Button
+          variant='contained'
+          aria-controls={formOpen ? 'add-event-form' : undefined}
+          aria-haspopup="true"
+          aria-expanded={formOpen ? 'true' : undefined}
+          onClick={handleOpenForm}
+          sx={{
+            marginRight: 0,
+            marginLeft: 'auto',
+            display: 'block',
+          }}
+        >
+          +
+        </Button>
+        <Popover
+          id="add-event-form"
+          aria-labelledby="add-event-form"
+          anchorEl={formAnchor}
+          open={formOpen}
+          onClose={handleCloseForm}
+          anchorOrigin={{
+            vertical: 'top',
+            horizontal: 'right',
+          }}
+          transformOrigin={{
+            vertical: 'top',
+            horizontal: 'left',
+          }}
+          disableScrollLock
+        >
+          <h2>Add New Event</h2>
+          <FormControl>
+            <TextField 
+              id="event-title"
+              label="Event Title"
+              variant="outlined"
+              name="name"
+              onChange={handleFormChange}
+            />
+            <TextField
+              id="start-time"
+              label="Start Time"
+              type="datetime-local"
+              sx={{ width: 250 }}
+              InputLabelProps={{
+                shrink: true,
+              }}
+              name="start_time"
+              onChange={handleFormChange}
+            />
+            <TextField
+              id="end-time"
+              label="End Time"
+              type="datetime-local"
+              sx={{ width: 250 }}
+              InputLabelProps={{
+                shrink: true,
+              }}
+              name="end_time"
+              onChange={handleFormChange}
+            />
+          </FormControl>
+          <Button
+            variant='contained'
+            sx={{display: 'block'}}
+            onClick={handleAddEvent}
+          >
+            Add Event
+          </Button>
+        </Popover>
+      </Content>
       <Container>
         <Content>
           <Calendar ref={calendarRef} >
@@ -150,7 +187,7 @@ const DayCalendar = ({ events }) => {
               id="dayCalendar"
             >
               <RowBlocks />
-              {events.map(event => <EventBox event={event} maxHeight={height} />)}
+              {allEvents.map(event => <EventBox event={event} maxHeight={height} />)}
             </div>
           </Calendar>
         </Content>
