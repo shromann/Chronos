@@ -3,7 +3,16 @@ import { useRef, useState, useEffect } from 'react';
 import styled from '@emotion/styled';
 
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import { FormControl, TextField, Popover, Button } from '@mui/material';
+import { FormControl,
+  TextField,
+  Popover,
+  Button,
+  FormLabel,
+  RadioGroup,
+  FormControlLabel,
+  Radio,
+  Grid,
+} from '@mui/material';
 
 import FormatPicker from '../../components/FormatPicker';
 import Header from '../../components/Header';
@@ -13,7 +22,7 @@ import HourLabels from '../../components/HourLabels';
 
 const Container = styled.div`
   max-width: 100vw;
-  max-height: 85vh;
+  max-height: 80vh;
   overflow-y: scroll;
   margin: 0 auto;
   margin-top: 20px;
@@ -71,9 +80,9 @@ const DayCalendar = ({ events }) => {
 
   const [newEvent, setNewEvent] = useState({
     name: '',
-    start_time: new Date(),
-    end_time: new Date(),
-    focus: 0
+    start_time: '',
+    end_time: '',
+    focus: 0,
   });
 
   const handleFormChange = event => {
@@ -88,16 +97,18 @@ const DayCalendar = ({ events }) => {
       ...newEvent,
       [name]: value,
     });
+    console.log(newEvent);
   };
 
   const handleAddEvent = () => {
     allEvents.push(newEvent);
     setAllEvents(allEvents);
+    console.log(allEvents);
     setFormAnchor(null);
     setNewEvent({
-      title: '',
-      start_time: new Date(),
-      end_time: new Date(),
+      name: '',
+      start_time: null,
+      end_time: null,
       focus: 0
     });
   };
@@ -128,8 +139,8 @@ const DayCalendar = ({ events }) => {
           open={formOpen}
           onClose={handleCloseForm}
           anchorOrigin={{
-            vertical: 'top',
-            horizontal: 'right',
+            vertical: 'bottom',
+            horizontal: 'left',
           }}
           transformOrigin={{
             vertical: 'top',
@@ -140,34 +151,55 @@ const DayCalendar = ({ events }) => {
           <h2>Add New Event</h2>
           <FormControl>
             <TextField 
+              value={newEvent.name}
               id="event-title"
               label="Event Title"
               variant="outlined"
               name="name"
               onChange={handleFormChange}
+              sx={{marginBottom: 3}}
             />
-            <TextField
-              id="start-time"
-              label="Start Time"
-              type="datetime-local"
-              sx={{ width: 250 }}
-              InputLabelProps={{
-                shrink: true,
-              }}
-              name="start_time"
-              onChange={handleFormChange}
-            />
-            <TextField
-              id="end-time"
-              label="End Time"
-              type="datetime-local"
-              sx={{ width: 250 }}
-              InputLabelProps={{
-                shrink: true,
-              }}
-              name="end_time"
-              onChange={handleFormChange}
-            />
+            <Grid container spacing={0} sx={{ maxWidth: '600px'}}>
+              <Grid item xs={6}>
+                <TextField
+                  id="start-time"
+                  label="Start Time"
+                  type="datetime-local"
+                  sx={{ width: 250, marginBottom: 3 }}
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                  name="start_time"
+                  onChange={handleFormChange}
+                />
+                <TextField
+                  id="end-time"
+                  label="End Time"
+                  type="datetime-local"
+                  sx={{ width: 250, marginBottom: 3 }}
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                  name="end_time"
+                  onChange={handleFormChange}
+                />
+              </Grid>
+              <Grid item xs={6}>
+                <FormLabel id="form-radio-buttons-label">Focus</FormLabel>
+                  <RadioGroup
+                    row
+                    aria-labelledby="form-radio-buttons-label"
+                    name="focus"
+                    onChange={handleFormChange}
+                  >
+                    <FormControlLabel value={1} control={<Radio />} label="1" />
+                    <FormControlLabel value={2} control={<Radio />} label="2" />
+                    <FormControlLabel value={3} control={<Radio />} label="3" />
+                    <FormControlLabel value={4} control={<Radio />} label="4" />
+                    <FormControlLabel value={5} control={<Radio />} label="5" />
+                  </RadioGroup>
+              </Grid>
+            </Grid>
           </FormControl>
           <Button
             variant='contained'
