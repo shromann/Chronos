@@ -1,9 +1,13 @@
 /** @jsxImportSource @emotion/react */
-import { useRef, useState, useEffect } from 'react';
-import styled from '@emotion/styled';
+import { useRef, useState, useEffect } from "react";
+import styled from "@emotion/styled";
+import Box from "@mui/material/Box";
 
-import { ThemeProvider, createTheme } from '@mui/material/styles';
-import { FormControl,
+import plus from "./plus.svg";
+
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+import {
+  FormControl,
   TextField,
   Popover,
   Button,
@@ -12,13 +16,13 @@ import { FormControl,
   FormControlLabel,
   Radio,
   Grid,
-} from '@mui/material';
+} from "@mui/material";
 
-import FormatPicker from '../../components/FormatPicker';
-import Header from '../../components/Header';
-import EventBox from './EventBox';
-import RowBlocks from '../../components/RowBlocks';
-import HourLabels from '../../components/HourLabels';
+import FormatPicker from "../../components/FormatPicker";
+import Header from "../../components/Header";
+import EventBox from "./EventBox";
+import RowBlocks from "../../components/RowBlocks";
+import HourLabels from "../../components/HourLabels";
 
 const Container = styled.div`
   max-width: 100vw;
@@ -31,7 +35,7 @@ const Container = styled.div`
 const Content = styled.div`
   width: 860px;
   margin: 20px auto 0 auto;
-`
+`;
 
 const Calendar = styled.article`
   margin-top: 1em;
@@ -44,7 +48,7 @@ const theme = createTheme({
     MuiPopover: {
       styleOverrides: {
         paper: {
-          padding: '2em',
+          padding: "2em",
         },
       },
     },
@@ -52,7 +56,6 @@ const theme = createTheme({
 });
 
 const DayCalendar = ({ events }) => {
-
   const [allEvents, setAllEvents] = useState(events);
 
   // Get height of entire calendar to calculate position of events
@@ -68,27 +71,27 @@ const DayCalendar = ({ events }) => {
   // Opens and closes add event form
   const [formAnchor, setFormAnchor] = useState(null);
   const formOpen = Boolean(formAnchor);
-  
-  const handleOpenForm = event => {
+
+  const handleOpenForm = (event) => {
     document.body.style.overflow = "scroll";
     setFormAnchor(event.currentTarget);
   };
 
   const handleCloseForm = () => {
     setFormAnchor(null);
-  }
+  };
 
   const [newEvent, setNewEvent] = useState({
-    name: '',
-    start_time: '',
-    end_time: '',
+    name: "",
+    start_time: "",
+    end_time: "",
     focus: 0,
   });
 
-  const handleFormChange = event => {
+  const handleFormChange = (event) => {
     const { name } = event.target;
     let value;
-    if (name === 'start_time' || name === 'end_time') {
+    if (name === "start_time" || name === "end_time") {
       value = new Date(event.target.value);
     } else {
       value = event.target.value;
@@ -99,37 +102,51 @@ const DayCalendar = ({ events }) => {
     });
   };
 
-  const handleAddEvent = event => {
+  const handleAddEvent = (event) => {
     event.preventDefault();
     allEvents.push(newEvent);
     setAllEvents(allEvents);
     setFormAnchor(null);
     setNewEvent({
-      name: '',
+      name: "",
       start_time: null,
       end_time: null,
-      focus: 0
+      focus: 0,
     });
   };
 
   return (
     <ThemeProvider theme={theme}>
       <Header />
-      <FormatPicker/>
+      <FormatPicker />
       <Content>
         <Button
-          variant='contained'
-          aria-controls={formOpen ? 'add-event-form' : undefined}
+          variant="contained"
+          aria-controls={formOpen ? "add-event-form" : undefined}
           aria-haspopup="true"
-          aria-expanded={formOpen ? 'true' : undefined}
+          aria-expanded={formOpen ? "true" : undefined}
           onClick={handleOpenForm}
           sx={{
             marginRight: 0,
-            marginLeft: 'auto',
-            display: 'block',
+            marginLeft: "auto",
+            display: "block",
+            backgroundColor: "#000E3E",
+            border: "1px solid white",
+            ":hover": {
+              backgroundColor: "#000E3E",
+            },
           }}
         >
-          +
+          <Box
+            component="img"
+            sx={{
+              transform: 'translateY(3px)',
+              height: '20px',
+              wiegth: '20px',
+            }}
+            alt="plus sign"
+            src={plus}
+          />
         </Button>
         <Popover
           id="add-event-form"
@@ -138,29 +155,29 @@ const DayCalendar = ({ events }) => {
           open={formOpen}
           onClose={handleCloseForm}
           anchorOrigin={{
-            vertical: 'bottom',
-            horizontal: 'left',
+            vertical: "bottom",
+            horizontal: "left",
           }}
           transformOrigin={{
-            vertical: 'top',
-            horizontal: 'left',
+            vertical: "top",
+            horizontal: "left",
           }}
           disableScrollLock
         >
           <h2>Add New Event</h2>
-          <form onSubmit={handleAddEvent} >
+          <form onSubmit={handleAddEvent}>
             <FormControl>
-              <TextField 
+              <TextField
                 value={newEvent.name}
                 id="event-title"
                 label="Event Title"
                 variant="outlined"
                 name="name"
                 onChange={handleFormChange}
-                sx={{marginBottom: 3}}
+                sx={{ marginBottom: 3 }}
                 required
               />
-              <Grid container spacing={0} sx={{ maxWidth: '600px'}}>
+              <Grid container spacing={0} sx={{ maxWidth: "600px" }}>
                 <Grid item xs={6}>
                   <TextField
                     id="start-time"
@@ -189,26 +206,22 @@ const DayCalendar = ({ events }) => {
                 </Grid>
                 <Grid item xs={6}>
                   <FormLabel id="form-radio-buttons-label">Focus</FormLabel>
-                    <RadioGroup
-                      row
-                      aria-labelledby="form-radio-buttons-label"
-                      name="focus"
-                      onChange={handleFormChange}
-                    >
-                      <FormControlLabel value={1} control={<Radio />} label="1" />
-                      <FormControlLabel value={2} control={<Radio />} label="2" />
-                      <FormControlLabel value={3} control={<Radio />} label="3" />
-                      <FormControlLabel value={4} control={<Radio />} label="4" />
-                      <FormControlLabel value={5} control={<Radio />} label="5" />
-                    </RadioGroup>
+                  <RadioGroup
+                    row
+                    aria-labelledby="form-radio-buttons-label"
+                    name="focus"
+                    onChange={handleFormChange}
+                  >
+                    <FormControlLabel value={1} control={<Radio />} label="1" />
+                    <FormControlLabel value={2} control={<Radio />} label="2" />
+                    <FormControlLabel value={3} control={<Radio />} label="3" />
+                    <FormControlLabel value={4} control={<Radio />} label="4" />
+                    <FormControlLabel value={5} control={<Radio />} label="5" />
+                  </RadioGroup>
                 </Grid>
               </Grid>
             </FormControl>
-            <Button
-              variant='contained'
-              type='submit'
-              sx={{display: 'block'}}
-            >
+            <Button variant="contained" type="submit" sx={{ display: "block" }}>
               Add Event
             </Button>
           </form>
@@ -216,14 +229,13 @@ const DayCalendar = ({ events }) => {
       </Content>
       <Container>
         <Content>
-          <Calendar ref={calendarRef} >
+          <Calendar ref={calendarRef}>
             <HourLabels />
-            <div
-              css={{flexGrow: 100}}
-              id="dayCalendar"
-            >
+            <div css={{ flexGrow: 100 }} id="dayCalendar">
               <RowBlocks />
-              {allEvents.map(event => <EventBox event={event} maxHeight={height} />)}
+              {allEvents.map((event) => (
+                <EventBox event={event} maxHeight={height} />
+              ))}
             </div>
           </Calendar>
         </Content>
