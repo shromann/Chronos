@@ -16,7 +16,7 @@ import { FormControl,
 
 import FormatPicker from '../../components/FormatPicker';
 import Header from '../../components/Header';
-import EventBox from './EventBox';
+import EventBox from '../../components/EventBox';
 import RowBlocks from '../../components/RowBlocks';
 import HourLabels from '../../components/HourLabels';
 
