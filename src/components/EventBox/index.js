@@ -1,5 +1,5 @@
 import React from 'react';
-import StyledBox from './StyledBox';
+import EventContainer from './EventContainer';
 import EventContent from './EventContent';
 
 import { DAY_CALENDAR_WIDTH } from '../../components/utils/constants';
@@ -13,7 +13,7 @@ import {
 
 const EventBox = ({ event, maxHeight }) => {
   const duration = getEventDuration(event.start_time, event.end_time);
-  return <StyledBox
+  return <EventContainer
     sx={{
       width: DAY_CALENDAR_WIDTH + 'px',
       height: eventHeight(duration, maxHeight),
@@ -22,7 +22,7 @@ const EventBox = ({ event, maxHeight }) => {
     }}>
       <EventContent>{event.name}</EventContent>
       <EventContent>{eventTimes(event)}</EventContent>
-    </StyledBox>
+    </EventContainer>
 }
 
 export default EventBox;

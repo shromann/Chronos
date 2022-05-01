@@ -1,7 +1,7 @@
 import { Box } from "@mui/material";
 import styled from '@emotion/styled';
 
-const StyledBox = styled(Box) `
+const EventContainer = styled(Box) `
   background-color: rgb(0, 0, 0, 0.5);
   position: absolute;
   text-align: left;
@@ -11,4 +11,4 @@ const StyledBox = styled(Box) `
   border-radius: 7px;
 `
 
-export default StyledBox;
+export default EventContainer;
