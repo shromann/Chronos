@@ -9,7 +9,7 @@ const DayCalendar = ({ events, height }) => {
       id="dayCalendar"
     >
       <RowBlocks />
-      {events.map(event => <EventBox event={event} maxHeight={height} />)}
+      {events.map((event, index) => <EventBox key={index} event={event} maxHeight={height} />)}
     </div>
   );
 };
