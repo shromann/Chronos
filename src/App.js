@@ -1,5 +1,5 @@
 import './App.css';
-import DayCalendar from './containers/HomePage/DayCalendar';
+import DayCalendar from './containers/HomePage/index';
 
 const events = [
   {
