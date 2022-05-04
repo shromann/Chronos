@@ -21,4 +21,13 @@ export const getEventDuration = (start, end) => (
 export const timeToMinutes = (time) => (
   time.getHours() * 60 + time.getMinutes()
 );
+
+
+const eventTimeDetails = (time) => {
+  return (time.getHours() % 12 === 0 ? 12 : time.getHours() % 12) + ':' + time.getMinutes() + (time.getMinutes() < 10 ? '0' : '') + ' ' + (time.getHours() <= 12 ? 'am' : 'pm');
+}
+
+export const eventTimes = (event) => {
+  return eventTimeDetails(event.start_time) + ' - ' + eventTimeDetails(event.end_time);
+}
   
