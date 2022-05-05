@@ -1,17 +1,27 @@
-import React from "react";
+import React, { useRef, useState, useEffect } from "react";
 
 import EventBox from "../../components/EventBox";
 import RowBlocks from "../../components/RowBlocks";
 
-const DayCalendar = ({ date, events, height, width }) => {
+const DayCalendar = ({ date, events, height }) => {
   const dayEvents = events.filter(event => (
     event.start_time.getMonth() === date.getMonth() && event.start_time.getDay() === date.getDay()
   ));
 
+  // Get the correct width for EventBox
+  const columnEl = useRef(null);
+  const [width, setWidth] = useState(0);
+  const getColumnWidth = () => {
+    setWidth(columnEl.current.clientWidth);
+  };
+  useEffect(() => {
+    getColumnWidth();
+  });
+
   return (
     <div
       style={{ flexGrow: 100, border: "1px solid black" }}
-      id="dayCalendar"
+      ref={columnEl}
     >
       <RowBlocks width={width} />
       {dayEvents.map((event, index) => (

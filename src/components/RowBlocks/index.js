@@ -7,7 +7,7 @@ const RowBlocks = ({ width }) => {
   const allBlocks = [];
 
   for (let i = 0; i < NUM_HOURS; i++) {
-    allBlocks.push(<Block key={i} hour={i} sx={{ width: width }} />);
+    allBlocks.push(<Block key={i} hour={i}/>);
   }
 
   return <>{allBlocks}</>;
