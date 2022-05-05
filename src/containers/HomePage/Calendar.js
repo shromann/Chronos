@@ -4,6 +4,7 @@ import Container from './Container';
 import Column from './Column';
 import HourLabels from '../../components/HourLabels';
 import DayCalendar from './DayCalendar';
+import WeekCalendar from './WeekCalendar';
 
 const Calendar = ({ allEvents }) => {
   // Get height of entire calendar to calculate position of events
@@ -21,7 +22,7 @@ const Calendar = ({ allEvents }) => {
     <Container>
       <Column ref={calendarRef} >
         <HourLabels />
-        <DayCalendar events={allEvents} height={height} />
+        <WeekCalendar events={allEvents} height={height} />
       </Column>
     </Container>
   )
