@@ -132,6 +132,8 @@ const DayCalendar = ({ events }) => {
             display: "block",
             backgroundColor: "#000E3E",
             border: "1px solid white",
+            borderRadius: "10px",
+            boxShadow: "0px 0px",
             ":hover": {
               backgroundColor: "#000E3E",
             },
