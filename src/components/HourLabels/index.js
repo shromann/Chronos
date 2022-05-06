@@ -12,7 +12,7 @@ const Container = styled.div`
     padding-right: 1em;
     text-align: right;
     border: ${ROW_GAP_BORDER_SIZE + "px solid transparent"};
-    // margin: -1px 0px;
+    width: 60px;
   }
 
   time {
