@@ -6,7 +6,7 @@ const HoursGap = styled.div`
   padding-right: 1em;
 `;
 
-const DateString = styled.h2`
+const DateString = styled.p`
   font-size: 1em;
   flex-grow: 100;
 `;

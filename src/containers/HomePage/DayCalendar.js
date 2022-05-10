@@ -5,7 +5,7 @@ import RowBlocks from "../../components/RowBlocks";
 
 const DayCalendar = ({ date, events, height }) => {
   const dayEvents = events.filter(event => (
-    event.start_time.getMonth() === date.getMonth() && event.start_time.getDay() === date.getDay()
+    event.start_time.getMonth() === date.getMonth() && event.start_time.getDate() === date.getDate()
   ));
 
   // Get the correct width for EventBox
@@ -20,7 +20,7 @@ const DayCalendar = ({ date, events, height }) => {
 
   return (
     <div
-      style={{ flexGrow: 100, border: "1px solid black" }}
+      style={{ flexGrow: 100, border: "0.5px solid grey" }}
       ref={columnEl}
     >
       <RowBlocks width={width} />
