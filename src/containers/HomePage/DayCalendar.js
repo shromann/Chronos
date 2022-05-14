@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useRef, useState, useEffect } from "react";
 
 import EventBox from "../../components/EventBox";
@@ -17,8 +18,14 @@ const DayCalendar = ({ date, events, height }) => {
   useEffect(() => {
     getColumnWidth();
   });
+=======
+import EventBox from "../../components/EventBox";
+import RowBlocks from "../../components/RowBlocks";
+>>>>>>> develop
 
+const DayCalendar = ({events, height}) => {
   return (
+<<<<<<< HEAD
     <div
       style={{ flexGrow: 100, border: "0.5px solid grey" }}
       ref={columnEl}
@@ -26,6 +33,12 @@ const DayCalendar = ({ date, events, height }) => {
       <RowBlocks width={width} />
       {dayEvents.map((event, index) => (
         <EventBox key={index} event={event} maxHeight={height} width={width} />
+=======
+    <div css={{flexGrow: 100}} id="dayCalendar">
+      <RowBlocks />
+      {events.map((event, index) => (
+        <EventBox key={index} event={event} maxHeight={height} />
+>>>>>>> develop
       ))}
     </div>
   );
