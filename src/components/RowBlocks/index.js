@@ -1,17 +1,16 @@
-import React from 'react';
+import React from "react";
 
-import { NUM_HOURS } from '../utils/constants';
-import Block from './Block';
+import { NUM_HOURS } from "../utils/constants";
+import Block from "./Block";
 
-const RowBlocks = () => {
-    const allBlocks = [];
+const RowBlocks = ({ width }) => {
+  const allBlocks = [];
 
-    for (let i = 0; i < NUM_HOURS; i++) {
-      allBlocks.push(<Block key={i} hour={i} />);
-    }
+  for (let i = 0; i < NUM_HOURS; i++) {
+    allBlocks.push(<Block key={i} hour={i}/>);
+  }
 
-    return (<>{allBlocks}</>)
-  
+  return <>{allBlocks}</>;
 };
 
 export default RowBlocks;

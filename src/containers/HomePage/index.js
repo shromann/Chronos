@@ -9,7 +9,7 @@ import AddEventForm from "./AddEventForm";
 import Calendar from "./Calendar";
 
 const Content = styled.div`
-  width: 860px;
+  width: 1200px;
   margin: 20px auto 0 auto;
 `;
 
