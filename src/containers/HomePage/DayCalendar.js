@@ -28,18 +28,25 @@ const DayCalendar = ({ date, events, height }) => {
     getColumnWidth();
   });
 
+
   const [newEvent, setNewEvent] = useState(eventSchema);
   const [hasNewEvent, setHasNewEvent] = useState(false);
-
+  
+  /* Create new event when calendar area is clicked */
   const createNewEvent = e => {
+    // Position of mouse click
     const clickPosition = e.clientY - e.target.parentNode.getBoundingClientRect().top;
+    
+    // Set event start time based on position of mouse click
     const event_start = getEventTime(clickPosition, height);
     event_start.setMonth(date.getMonth());
     event_start.setDate(date.getDate());
 
+    // Default event has duration of 15 minutes
     const event_end = new Date(event_start);
     event_end.setMinutes(event_end.getMinutes() + 15); 
 
+    // Update new event, display new event on screen
     setNewEvent({...newEvent, start_time: event_start, end_time: event_end});
     setHasNewEvent(true);
   }
@@ -54,6 +61,7 @@ const DayCalendar = ({ date, events, height }) => {
       {dayEvents.map((event, index) => (
         <EventBox key={index} event={event} maxHeight={height} width={width} />
       ))}
+      {/* Display new event on screen */}
       {hasNewEvent ? 
         <>
           <EventBox event={newEvent} maxHeight={height} width={width} />
