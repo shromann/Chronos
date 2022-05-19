@@ -14,6 +14,11 @@ export const eventPlacement = (startTime, calHeight) => {
 
 }
 
+export const getEventTime = (position, calHeight) => {
+  const inMinutes =  (position - ROW_GAP_BORDER_SIZE) * DAY_TICKS / calHeight;
+  return minutesToTime(inMinutes);
+}
+
 export const getEventDuration = (start, end) => (
   (end.getHours() * 60 + end.getMinutes()) - (start.getHours() * 60 + start.getMinutes())
 );
@@ -21,6 +26,14 @@ export const getEventDuration = (start, end) => (
 export const timeToMinutes = (time) => (
   time.getHours() * 60 + time.getMinutes()
 );
+
+const minutesToTime = (minutes) => {
+  const currTime = new Date();
+  currTime.setHours(Math.floor(minutes / 60));
+  currTime.setMinutes(minutes % 60);
+
+  return currTime;
+}
 
 
 const eventTimeDetails = (time) => {
