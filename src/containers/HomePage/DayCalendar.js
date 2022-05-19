@@ -12,6 +12,7 @@ const eventSchema = {
 }
 
 const DayCalendar = ({ date, events, height }) => {
+  // Filter out the current day's event
   const [dayEvents, setDayEvents] = useState(events.filter(
     (event) =>
       event.start_time.getMonth() === date.getMonth() &&
@@ -28,11 +29,11 @@ const DayCalendar = ({ date, events, height }) => {
     getColumnWidth();
   });
 
-
+  /* New event creation through dragging on calendar */
   const [newEvent, setNewEvent] = useState(eventSchema);
   const [hasNewEvent, setHasNewEvent] = useState(false);
   
-  /* Create new event when calendar area is clicked */
+  /* Starts creation of new event when calendar area is clicked */
   const createNewEvent = e => {
     // Position of mouse click
     const clickPosition = e.clientY - e.target.parentNode.getBoundingClientRect().top;
@@ -52,11 +53,13 @@ const DayCalendar = ({ date, events, height }) => {
     setHasNewEvent(true);
   }
 
+  /* Change end time of event during event creation dragging */
   const changeEndTime = e => {
     if (hasNewEvent) {
       // Position of mouse click
       const clickPosition = e.clientY - e.target.parentNode.getBoundingClientRect().top;
   
+      // Update event end time
       const end_time = getEventTime(clickPosition, height);
       newEvent.end_time.setHours(end_time.hour);
       newEvent.end_time.setMinutes(end_time.minute);
@@ -65,9 +68,9 @@ const DayCalendar = ({ date, events, height }) => {
     }
   };
 
-  const addEvent = e => {
+  /* Handles when mouse is lifted */
+  const addEvent = () => {
     if (hasNewEvent) {
-      console.log("added");
       dayEvents.push(newEvent);
       setDayEvents([...dayEvents]);
       setNewEvent(eventSchema);
