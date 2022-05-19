@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect } from "react";
 
 import EventBox from "../../components/EventBox";
 import RowBlocks from "../../components/RowBlocks";
-import { getEventTime } from "../../components/utils/eventTime";
+import { getEventTime, eventPlacement } from "../../components/utils/eventTime";
 
 const eventSchema = {
   name: "New Event",
@@ -32,11 +32,14 @@ const DayCalendar = ({ date, events, height }) => {
   /* New event creation through dragging on calendar */
   const [newEvent, setNewEvent] = useState(eventSchema);
   const [hasNewEvent, setHasNewEvent] = useState(false);
-  
+  const [startPosition, setStartPosition] = useState(0);
+
+
   /* Starts creation of new event when calendar area is clicked */
   const createNewEvent = e => {
     // Position of mouse click
-    const clickPosition = e.clientY - e.target.parentNode.getBoundingClientRect().top;
+    const clickPosition = e.clientY - columnEl.current.getBoundingClientRect().top;
+    setStartPosition(clickPosition);
     
     // Set event start time based on position of mouse click
     const start_time = getEventTime(clickPosition, height);
@@ -54,15 +57,23 @@ const DayCalendar = ({ date, events, height }) => {
   }
 
   /* Change end time of event during event creation dragging */
-  const changeEndTime = e => {
+  const changeDuration = e => {
     if (hasNewEvent) {
       // Position of mouse click
-      const clickPosition = e.clientY - e.target.parentNode.getBoundingClientRect().top;
-  
-      // Update event end time
-      const end_time = getEventTime(clickPosition, height);
-      newEvent.end_time.setHours(end_time.hour);
-      newEvent.end_time.setMinutes(end_time.minute);
+      const mousePosition = e.clientY - columnEl.current.getBoundingClientRect().top;
+
+      // console.log(startPosition, mousePosition);
+      if (startPosition <= mousePosition) {
+        // Update event end time
+        const end_time = getEventTime(mousePosition, height);
+        newEvent.end_time.setHours(end_time.hour);
+        newEvent.end_time.setMinutes(end_time.minute);
+      } else if (startPosition > mousePosition) {
+        // Dragged above initial click, update event start time
+        const start_time = getEventTime(mousePosition, height);
+        newEvent.start_time.setHours(start_time.hour);
+        newEvent.start_time.setMinutes(start_time.minute);
+      }
   
       setNewEvent({ ...newEvent });
     }
@@ -81,10 +92,10 @@ const DayCalendar = ({ date, events, height }) => {
   return (
     <div
       style={{ flexGrow: 100, border: "0.5px solid grey" }}
-      ref={columnEl}
       onMouseDown={createNewEvent}
-      onMouseMove={changeEndTime}
+      onMouseMove={changeDuration}
       onMouseUp={addEvent}
+      ref={columnEl}
     >
       <RowBlocks width={width} />
       {dayEvents.map((event, index) => (

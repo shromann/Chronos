@@ -10,7 +10,7 @@ export const eventHeight = (duration, calHeight) => {
 export const eventPlacement = (startTime, calHeight) => {
   // returns the UI start position. i.e where the event should start
   const inMinutes = timeToMinutes(startTime);
-  return (calHeight / DAY_TICKS * inMinutes) + ROW_GAP_BORDER_SIZE + 'px';
+  return (calHeight / DAY_TICKS * inMinutes) + ROW_GAP_BORDER_SIZE;
 
 }
 
@@ -32,7 +32,7 @@ const minutesToTime = (minutes) => (
 );
 
 const eventTimeDetails = (time) => {
-  return (time.getHours() % 12 === 0 ? 12 : time.getHours() % 12) + ':' + (time.getMinutes() < 10 ? '0' : '') + time.getMinutes() + ' ' + (time.getHours() <= 12 ? 'am' : 'pm');
+  return (time.getHours() % 12 === 0 ? 12 : time.getHours() % 12) + ':' + (time.getMinutes() < 10 ? '0' : '') + time.getMinutes() + ' ' + (time.getHours() < 12 ? 'am' : 'pm');
 }
 
 export const eventTimes = (event) => {
