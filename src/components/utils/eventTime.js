@@ -27,14 +27,9 @@ export const timeToMinutes = (time) => (
   time.getHours() * 60 + time.getMinutes()
 );
 
-const minutesToTime = (minutes) => {
-  const currTime = new Date();
-  currTime.setHours(Math.floor(minutes / 60));
-  currTime.setMinutes(minutes % 60);
-
-  return currTime;
-}
-
+const minutesToTime = (minutes) => (
+  {hour: Math.floor(minutes / 60), minute: minutes % 60}
+);
 
 const eventTimeDetails = (time) => {
   return (time.getHours() % 12 === 0 ? 12 : time.getHours() % 12) + ':' + time.getMinutes() + (time.getMinutes() < 10 ? '0' : '') + ' ' + (time.getHours() <= 12 ? 'am' : 'pm');

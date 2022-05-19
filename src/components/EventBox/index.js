@@ -19,6 +19,7 @@ const EventBox = ({ event, maxHeight, width }) => {
         height: eventHeight(duration, maxHeight),
         top: eventPlacement(event.start_time, maxHeight),
         zIndex: timeToMinutes(event.start_time),
+        userSelect: 'none',
       }}
     >
       <EventContent>{event.name}</EventContent>

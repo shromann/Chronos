@@ -38,24 +38,50 @@ const DayCalendar = ({ date, events, height }) => {
     const clickPosition = e.clientY - e.target.parentNode.getBoundingClientRect().top;
     
     // Set event start time based on position of mouse click
-    const event_start = getEventTime(clickPosition, height);
-    event_start.setMonth(date.getMonth());
-    event_start.setDate(date.getDate());
+    const start_time = getEventTime(clickPosition, height);
+    const event_start = new Date(date);
+    event_start.setHours(start_time.hour);
+    event_start.setMinutes(start_time.minute);
 
     // Default event has duration of 15 minutes
     const event_end = new Date(event_start);
-    event_end.setMinutes(event_end.getMinutes() + 15); 
+    event_end.setMinutes(event_end.getMinutes() + 45); 
 
     // Update new event, display new event on screen
     setNewEvent({...newEvent, start_time: event_start, end_time: event_end});
     setHasNewEvent(true);
   }
 
+  const changeEndTime = e => {
+    if (hasNewEvent) {
+      // Position of mouse click
+      const clickPosition = e.clientY - e.target.parentNode.getBoundingClientRect().top;
+  
+      const end_time = getEventTime(clickPosition, height);
+      newEvent.end_time.setHours(end_time.hour);
+      newEvent.end_time.setMinutes(end_time.minute);
+  
+      setNewEvent({ ...newEvent });
+    }
+  };
+
+  const addEvent = e => {
+    if (hasNewEvent) {
+      console.log("added");
+      dayEvents.push(newEvent);
+      setDayEvents([...dayEvents]);
+      setNewEvent(eventSchema);
+      setHasNewEvent(false);
+    }
+  }
+
   return (
     <div
       style={{ flexGrow: 100, border: "0.5px solid grey" }}
       ref={columnEl}
-      onClick={createNewEvent}
+      onMouseDown={createNewEvent}
+      onMouseMove={changeEndTime}
+      onMouseUp={addEvent}
     >
       <RowBlocks width={width} />
       {dayEvents.map((event, index) => (
@@ -64,7 +90,11 @@ const DayCalendar = ({ date, events, height }) => {
       {/* Display new event on screen */}
       {hasNewEvent ? 
         <>
-          <EventBox event={newEvent} maxHeight={height} width={width} />
+          <EventBox
+            event={newEvent}
+            maxHeight={height}
+            width={width}
+          />
         </>
         : null}
     </div>
