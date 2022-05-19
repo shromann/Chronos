@@ -23,6 +23,7 @@ const AddEventForm = (props) => {
   const handleOpenForm = (event) => {
     document.body.style.overflow = "scroll";
     setFormAnchor(event.currentTarget);
+    console.log(event.currentTarget);
   };
 
   const handleCloseForm = () => {

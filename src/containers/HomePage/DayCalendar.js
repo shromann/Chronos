@@ -2,7 +2,8 @@ import React, { useRef, useState, useEffect } from "react";
 
 import EventBox from "../../components/EventBox";
 import RowBlocks from "../../components/RowBlocks";
-import { getEventTime, eventPlacement } from "../../components/utils/eventTime";
+import { getEventTime } from "../../components/utils/eventTime";
+import NewEventForm from "./NewEventForm";
 
 const eventSchema = {
   name: "New Event",
@@ -32,28 +33,34 @@ const DayCalendar = ({ date, events, height }) => {
   /* New event creation through dragging on calendar */
   const [newEvent, setNewEvent] = useState(eventSchema);
   const [hasNewEvent, setHasNewEvent] = useState(false);
+  const [editingEvent, setEditingEvent] = useState(false);
   const [startPosition, setStartPosition] = useState(0);
+  const newEventEl = useRef(null);
+  const [formAnchor, setFormAnchor] = useState(null);
 
 
   /* Starts creation of new event when calendar area is clicked */
   const createNewEvent = e => {
-    // Position of mouse click
-    const clickPosition = e.clientY - columnEl.current.getBoundingClientRect().top;
-    setStartPosition(clickPosition);
-    
-    // Set event start time based on position of mouse click
-    const start_time = getEventTime(clickPosition, height);
-    const event_start = new Date(date);
-    event_start.setHours(start_time.hour);
-    event_start.setMinutes(start_time.minute);
-
-    // Default event has duration of 15 minutes
-    const event_end = new Date(event_start);
-    event_end.setMinutes(event_end.getMinutes() + 45); 
-
-    // Update new event, display new event on screen
-    setNewEvent({...newEvent, start_time: event_start, end_time: event_end});
-    setHasNewEvent(true);
+    if (!editingEvent) {
+      // Position of mouse click
+      const clickPosition = e.clientY - columnEl.current.getBoundingClientRect().top;
+      setStartPosition(clickPosition);
+      
+      // Set event start time based on position of mouse click
+      const start_time = getEventTime(clickPosition, height);
+      const event_start = new Date(date);
+      event_start.setHours(start_time.hour);
+      event_start.setMinutes(start_time.minute);
+  
+      // Default event has duration of 30 minutes
+      const event_end = new Date(event_start);
+      event_end.setMinutes(event_end.getMinutes() + 30); 
+  
+      // Update new event, display new event on screen
+      setNewEvent({...newEvent, start_time: event_start, end_time: event_end});
+      setHasNewEvent(true);
+      setEditingEvent(true);
+    }
   }
 
   /* Change end time of event during event creation dragging */
@@ -82,11 +89,20 @@ const DayCalendar = ({ date, events, height }) => {
   /* Handles when mouse is lifted */
   const addEvent = () => {
     if (hasNewEvent) {
+      setFormAnchor(newEventEl.current);
       dayEvents.push(newEvent);
       setDayEvents([...dayEvents]);
-      setNewEvent(eventSchema);
+      // setNewEvent(eventSchema);
       setHasNewEvent(false);
     }
+  }
+
+  const handleCloseForm = () => {
+    setFormAnchor(null);
+    dayEvents.pop(newEvent);
+    setDayEvents([...dayEvents]);
+    setNewEvent(eventSchema);
+    setEditingEvent(false);
   }
 
   return (
@@ -102,12 +118,19 @@ const DayCalendar = ({ date, events, height }) => {
         <EventBox key={index} event={event} maxHeight={height} width={width} />
       ))}
       {/* Display new event on screen */}
-      {hasNewEvent ? 
+      {editingEvent ? 
         <>
           <EventBox
             event={newEvent}
             maxHeight={height}
             width={width}
+            ref={newEventEl}
+          />
+          <NewEventForm 
+            formAnchor={formAnchor} 
+            handleCloseForm={handleCloseForm}
+            newEvent={newEvent} 
+            setNewEvent={setNewEvent}
           />
         </>
         : null}
