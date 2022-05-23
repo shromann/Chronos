@@ -2,6 +2,9 @@ import React, {useState} from "react";
 
 import addEvent from "../../server/addEvent";
 
+import Box from "@mui/material/Box";
+import plus from "./plus.svg";
+
 import {
   Button,
   Popover,
@@ -75,9 +78,23 @@ const AddEventForm = (props) => {
           marginRight: 0,
           marginLeft: "auto",
           display: "block",
+          boxShadow: "none",
+          backgroundColor: "#000E3E",
+          ":hover": {
+            backgroundColor: "#000E3E",
+          },
         }}
       >
-        +
+        <Box
+            component="img"
+            sx={{
+              transform: 'translateY(4px)',
+              height: '20px',
+              wiegth: '20px',
+            }}
+            alt="plus sign"
+            src={plus}
+          />
       </Button>
       <Popover
         id="add-event-form"
