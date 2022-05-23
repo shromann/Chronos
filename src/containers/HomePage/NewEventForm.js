@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 
 import addEvent from "../../server/addEvent";
 
@@ -15,20 +15,27 @@ import {
 } from "@mui/material";
 
 const NewEventForm = ({ formAnchor, handleCloseForm, newEvent, setNewEvent }) => {
+  const getTime = date => {
+    const options = { hour12: false, hour: '2-digit', minute: '2-digit' };
+    return date.toLocaleTimeString(date, options);
+  }
+
   const formOpen = Boolean(formAnchor);
 
   const handleFormChange = (event) => {
     const {name} = event.target;
-    let value;
     if (name === "start_time" || name === "end_time") {
-      value = new Date(event.target.value);
+      const time = event.target.value.split(":");
+      console.log(time);
+      newEvent[name].setHours(time[0], time[1]);
+      setNewEvent({ ...newEvent });
     } else {
-      value = event.target.value;
+      const value = event.target.value;
+      setNewEvent({
+        ...newEvent,
+        [name]: value,
+      });
     }
-    setNewEvent({
-      ...newEvent,
-      [name]: value,
-    });
   };
 
   const handleAddEvent = (event) => {
@@ -75,28 +82,43 @@ const NewEventForm = ({ formAnchor, handleCloseForm, newEvent, setNewEvent }) =>
           />
           <Grid container spacing={0} sx={{maxWidth: "600px"}}>
             <Grid item xs={6}>
+            <TextField
+                id="date"
+                label="Date"
+                type="date"
+                sx={{width: 250, marginBottom: 3}}
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                name="date"
+                onChange={handleFormChange}
+                value={newEvent.start_time.toISOString().substr(0, 10)}
+                required
+              />
               <TextField
                 id="start-time"
                 label="Start Time"
-                type="datetime-local"
+                type="time"
                 sx={{width: 250, marginBottom: 3}}
                 InputLabelProps={{
                   shrink: true,
                 }}
                 name="start_time"
                 onChange={handleFormChange}
+                value={getTime(newEvent.start_time)}
                 required
               />
               <TextField
                 id="end-time"
                 label="End Time"
-                type="datetime-local"
+                type="time"
                 sx={{width: 250, marginBottom: 3}}
                 InputLabelProps={{
                   shrink: true,
                 }}
                 name="end_time"
                 onChange={handleFormChange}
+                value={getTime(newEvent.end_time)}
                 required
               />
             </Grid>
