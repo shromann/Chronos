@@ -54,9 +54,10 @@ const Calendar = ({ allEvents }) => {
   }
 
   return (
-    <Container>
+    <div>
       <IconButton onClick={handlePrevDay}><ArrowBackIos /></IconButton>
       <IconButton onClick={handleNextDay}><ArrowForwardIos /></IconButton>
+    <Container>
       <Column>
         <CalendarLabel week={week} />
       </Column>
@@ -66,6 +67,7 @@ const Calendar = ({ allEvents }) => {
         <WeekCalendar events={allEvents} height={height} week={week} />
       </Column>
     </Container>
+    </div>
   )
 };
 
