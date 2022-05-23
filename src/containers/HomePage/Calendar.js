@@ -11,7 +11,7 @@ import WeekCalendar from './WeekCalendar';
 import CalendarLabel from './CalendarLabel';
 
 const getCurrentWeek = () => {
-  const curr = new Date(2022, 3, 14);
+  const curr = new Date();
   const week = [];
 
   for (let i = 1; i <= 7; i++) {
