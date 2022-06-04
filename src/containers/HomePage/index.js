@@ -9,6 +9,7 @@ import Header from "../../components/Header";
 import AddEventForm from "./AddEventForm";
 import Calendar from "./Calendar";
 
+
 import getAllEvents from "../../server/getAllEvents";
 import { useAuth } from "../../contexts/AuthContext";
 
