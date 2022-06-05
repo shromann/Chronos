@@ -12,22 +12,25 @@
 // 4. Auto Reschedule
 //    1. Allocate just in a future date/time, if not possible then "Time Block" it in future date.
 
-
 function BRAC(focus){
 
     const a = -2.5;
     const k = 2.5;
     const b = Math.PI;
     
-    const times = (n) => Math.asin((focus - k)/a)/b + 2 * Math.PI * n;
+    const times = (n) => Math.asin((focus - k)/a)/b + Math.PI * n * Math.pow(-1, n);
 
-    
+    // NOTE: The upperbound might change depending on how we're storing time data.
+    const slots = [];
+    for (let i = 0; i < 24; i++) {
+        slots.push(times(i));
+    }
 
 }
 
 
-function Allocate(events, brac, optimised=false) {
+function Allocate(events, brac = BRAC) {
 
-    
+
     
 }
