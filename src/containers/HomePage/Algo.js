@@ -31,6 +31,16 @@ function BRAC(focus){
 
 function Allocate(events, brac = BRAC) {
 
+    // 1. Prioristise High Focus to Low Focus.
+    let list = []
+    for (let focus = 5; focus >= 0; focus--) {
+        list = events.filter(event => event.focus === focus);
+        times = brac(focus);
+
+            
+    }
+
+
 
     
 }
