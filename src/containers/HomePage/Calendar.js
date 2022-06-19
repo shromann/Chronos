@@ -11,7 +11,7 @@ import WeekCalendar from './WeekCalendar';
 import CalendarLabel from './CalendarLabel';
 
 const getCurrentWeek = () => {
-  const curr = new Date(2022, 3, 14);
+  const curr = new Date();
   const week = [];
 
   for (let i = 1; i <= 7; i++) {
@@ -54,9 +54,10 @@ const Calendar = ({ allEvents }) => {
   }
 
   return (
-    <Container>
+    <div>
       <IconButton onClick={handlePrevDay}><ArrowBackIos /></IconButton>
       <IconButton onClick={handleNextDay}><ArrowForwardIos /></IconButton>
+    <Container>
       <Column>
         <CalendarLabel week={week} />
       </Column>
@@ -66,6 +67,7 @@ const Calendar = ({ allEvents }) => {
         <WeekCalendar events={allEvents} height={height} week={week} />
       </Column>
     </Container>
+    </div>
   )
 };
 
