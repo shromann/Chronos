@@ -7,6 +7,10 @@ import {
   signOut,
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
+  sendEmailVerification,
+  GoogleAuthProvider,
+  signInWithPopup,
+  sendPasswordResetEmail,
 } from "firebase/auth";
 
 import { doc, setDoc } from "firebase/firestore";
@@ -28,10 +32,22 @@ export function AuthProvider({ children }) {
 
   const signUp = async (username, email, password) => {
     const user = await createUserWithEmailAndPassword(auth, email, password);
+    await sendEmailVerification(user.user);
     await setDoc(doc(db, "users", user.user.uid), {
       uid: user.user.uid,
       username: username,
     });
+  };
+
+  const signInWithGoogle = async () => {
+    const googleProvider = new GoogleAuthProvider();
+    const result = await signInWithPopup(auth, googleProvider);
+    const user = result.user;
+    setCurrentUid(user.uid);
+  };
+
+  const resetPassword = async (email) => {
+    await sendPasswordResetEmail(auth, email);
   };
 
   const logOut = async () => {
@@ -52,6 +68,8 @@ export function AuthProvider({ children }) {
     signIn,
     signUp,
     logOut,
+    signInWithGoogle,
+    resetPassword,
   };
 
   return (

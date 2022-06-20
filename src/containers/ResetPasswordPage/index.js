@@ -1,22 +1,18 @@
 import React, { useState } from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
-import IconButton from "@mui/material/IconButton";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import Alert from "@mui/material/Alert";
-import GoogleIcon from "@mui/icons-material/Google";
 
 import { useAuth } from "../../contexts/AuthContext";
 
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function Copyright(props) {
   return (
@@ -34,10 +30,10 @@ function Copyright(props) {
 }
 
 export default function SignIn() {
-  const { signIn, signInWithGoogle } = useAuth();
-  const navigate = useNavigate();
+  const { resetPassword } = useAuth();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [success, setSuccess] = useState(false);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -45,9 +41,10 @@ export default function SignIn() {
 
     try {
       setLoading(true);
-      await signIn(data.get("email"), data.get("password"));
-      navigate("/");
+      await resetPassword(data.get("email"));
+      setSuccess(true);
     } catch (e) {
+      console.log(error);
       setError(e.code);
     }
     setLoading(false);
@@ -68,10 +65,13 @@ export default function SignIn() {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Sign in
+          Reset Password
         </Typography>
         <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
           {error && <Alert severity="error">{error}</Alert>}
+          {success && (
+            <Alert severity="success">Password reset link sent!</Alert>
+          )}
           <TextField
             margin="normal"
             required
@@ -82,20 +82,6 @@ export default function SignIn() {
             autoComplete="email"
             autoFocus
           />
-          <TextField
-            margin="normal"
-            required
-            fullWidth
-            name="password"
-            label="Password"
-            type="password"
-            id="password"
-            autoComplete="current-password"
-          />
-          <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
-          />
           <Button
             type="submit"
             fullWidth
@@ -103,21 +89,11 @@ export default function SignIn() {
             sx={{ mt: 3, mb: 2 }}
             disabled={loading}
           >
-            Sign In
+            Submit
           </Button>
-          <Grid container>
-            <Grid item xs>
-              <Link to="/reset">{"Forgot password?"}</Link>
-            </Grid>
+          <Grid container justifyContent="flex">
             <Grid item>
-              <Link to="/signup">{"Don't have an account? Sign Up"}</Link>
-            </Grid>
-          </Grid>
-          <Grid container>
-            <Grid item>
-              <IconButton onClick={signInWithGoogle}>
-                <GoogleIcon />
-              </IconButton>
+              <Link to="/signin">Go Back</Link>
             </Grid>
           </Grid>
         </Box>

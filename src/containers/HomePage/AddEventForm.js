@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 
 import addEvent from "../../server/addEvent";
 
@@ -41,7 +41,7 @@ const AddEventForm = (props) => {
   });
 
   const handleFormChange = (event) => {
-    const {name} = event.target;
+    const { name } = event.target;
     let value;
     if (name === "start_time" || name === "end_time") {
       value = new Date(event.target.value);
@@ -87,15 +87,15 @@ const AddEventForm = (props) => {
         }}
       >
         <Box
-            component="img"
-            sx={{
-              transform: 'translateY(4px)',
-              height: '20px',
-              wiegth: '20px',
-            }}
-            alt="plus sign"
-            src={plus}
-          />
+          component="img"
+          sx={{
+            transform: "translateY(4px)",
+            height: "20px",
+            wiegth: "20px",
+          }}
+          alt="plus sign"
+          src={plus}
+        />
       </Button>
       <Popover
         id="add-event-form"
@@ -123,16 +123,16 @@ const AddEventForm = (props) => {
               variant="outlined"
               name="name"
               onChange={handleFormChange}
-              sx={{marginBottom: 3}}
+              sx={{ marginBottom: 3 }}
               required
             />
-            <Grid container spacing={0} sx={{maxWidth: "600px"}}>
+            <Grid container spacing={0} sx={{ maxWidth: "600px" }}>
               <Grid item xs={6}>
                 <TextField
                   id="start-time"
                   label="Start Time"
                   type="datetime-local"
-                  sx={{width: 250, marginBottom: 3}}
+                  sx={{ width: 250, marginBottom: 3 }}
                   InputLabelProps={{
                     shrink: true,
                   }}
@@ -144,7 +144,7 @@ const AddEventForm = (props) => {
                   id="end-time"
                   label="End Time"
                   type="datetime-local"
-                  sx={{width: 250, marginBottom: 3}}
+                  sx={{ width: 250, marginBottom: 3 }}
                   InputLabelProps={{
                     shrink: true,
                   }}
@@ -170,7 +170,7 @@ const AddEventForm = (props) => {
               </Grid>
             </Grid>
           </FormControl>
-          <Button variant="contained" type="submit" sx={{display: "block"}}>
+          <Button variant="contained" type="submit" sx={{ display: "block" }}>
             Add Event
           </Button>
         </form>
