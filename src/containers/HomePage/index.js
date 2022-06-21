@@ -8,6 +8,7 @@ import FormatPicker from "../../components/FormatPicker";
 import Header from "../../components/Header";
 import AddEventForm from "./AddEventForm";
 import Calendar from "./Calendar";
+import { DEFAULT_VIEW } from "../../components/utils/constants";
 
 import getAllEvents from "../../server/getAllEvents";
 import { useAuth } from "../../contexts/AuthContext";
@@ -45,14 +46,19 @@ const HomePage = () => {
     setAllEvents([...allEvents, event]);
   };
 
+  const [currView, setView] = useState(DEFAULT_VIEW);
+  const changeView = view => {
+    setView(view);
+  }
+ 
   return (
     <ThemeProvider theme={theme}>
       <Header />
       <Button onClick={() => logOut()}>Log Out</Button>
       <Content>
-        <FormatPicker />
+        <FormatPicker changeView={changeView} view={currView} />
         <AddEventForm addNewEvent={handleAddEvent} uid={currentUid} />
-        <Calendar allEvents={allEvents} />
+        <Calendar allEvents={allEvents} view={currView} />
       </Content>
     </ThemeProvider>
   );

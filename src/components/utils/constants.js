@@ -7,3 +7,7 @@ export const NUM_HOURS = 24;
 
 // unit: mins in 24 hours
 export const DAY_TICKS = 1440;
+
+export const DAY_VIEW = 0;
+export const WEEK_VIEW = 1;
+export const DEFAULT_VIEW = WEEK_VIEW;

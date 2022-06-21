@@ -1,17 +1,30 @@
-import React from 'react';
-import { ButtonGroup } from '@mui/material';
-import FormatButton from './FormatButton';
-import HighlightedButton from './HighlightedButton';
+import React from "react";
+import { ToggleButtonGroup } from "@mui/material";
+import FormatButton from "./FormatButton";
+import {
+  DAY_VIEW,
+  WEEK_VIEW,
+} from "../utils/constants";
 
-export default function FormatPicker() {
+export default function FormatPicker({ view, changeView }) {
+  const handleChange = (e, newView) => {
+    changeView(newView);
+  }
+
   return (
     <div>
-      <ButtonGroup direction="row" spacing={0}>
-        <HighlightedButton>Day</HighlightedButton>
-        <FormatButton>Week</FormatButton>
-        <FormatButton>Month</FormatButton>
-        <FormatButton>Year</FormatButton>
-      </ButtonGroup>
+      <ToggleButtonGroup exclusive value={view} onChange={handleChange}>
+        <FormatButton
+          value={DAY_VIEW}
+        >
+          Day
+        </FormatButton>
+        <FormatButton
+          value={WEEK_VIEW}
+        >
+          Week
+        </FormatButton>
+      </ToggleButtonGroup>
     </div>
   );
 }

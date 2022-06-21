@@ -9,6 +9,7 @@ import HourLabels from '../../components/HourLabels';
 import DayCalendar from './DayCalendar';
 import WeekCalendar from './WeekCalendar';
 import CalendarLabel from './CalendarLabel';
+import { DAY_VIEW, WEEK_VIEW } from '../../components/utils/constants';
 
 const getCurrentWeek = () => {
   const curr = new Date();
@@ -23,7 +24,7 @@ const getCurrentWeek = () => {
   return week;
 }
 
-const Calendar = ({ allEvents }) => {
+const Calendar = ({ allEvents, view }) => {
   // Get height of entire calendar to calculate position of events
   const calendarRef = useRef(null);
   const [height, setHeight] = useState(0);
@@ -53,18 +54,29 @@ const Calendar = ({ allEvents }) => {
     setWeek([...week, date]);
   }
 
+  const renderCalendar = () => {
+    if (view === DAY_VIEW) {
+      return (<DayCalendar events={allEvents} height={height} date={new Date(2022, 3, 14)}/>);
+    }
+
+    if (view === WEEK_VIEW) {
+      return (<WeekCalendar events={allEvents} height={height} week={week} />);
+    }
+
+    return null;
+  }
+
   return (
     <div>
       <IconButton onClick={handlePrevDay}><ArrowBackIos /></IconButton>
       <IconButton onClick={handleNextDay}><ArrowForwardIos /></IconButton>
     <Container>
       <Column>
-        <CalendarLabel week={week} />
+        {view === WEEK_VIEW ? <CalendarLabel week={week} /> : null}
       </Column>
       <Column ref={calendarRef} >
         <HourLabels />
-        {/* <DayCalendar events={allEvents} height={height} date={new Date(2022, 3, 14)}/> */}
-        <WeekCalendar events={allEvents} height={height} week={week} />
+        {renderCalendar()}
       </Column>
     </Container>
     </div>
