@@ -47,16 +47,13 @@ const HomePage = () => {
   };
 
   const [currView, setView] = useState(DEFAULT_VIEW);
-  const changeView = view => {
-    setView(view);
-  }
- 
+
   return (
     <ThemeProvider theme={theme}>
       <Header />
       <Button onClick={() => logOut()}>Log Out</Button>
       <Content>
-        <FormatPicker changeView={changeView} view={currView} />
+        <FormatPicker changeView={setView} view={currView} />
         <AddEventForm addNewEvent={handleAddEvent} uid={currentUid} />
         <Calendar allEvents={allEvents} view={currView} />
       </Content>
