@@ -10,6 +10,8 @@ import DayCalendar from './DayCalendar';
 import WeekCalendar from './WeekCalendar';
 import CalendarLabel from './CalendarLabel';
 
+import Algo from './Algo';
+
 const getCurrentWeek = () => {
   const curr = new Date(2022, 3, 14);
   const week = [];
@@ -55,6 +57,7 @@ const Calendar = ({ allEvents }) => {
 
   return (
     <Container>
+      <Algo />
       <IconButton onClick={handlePrevDay}><ArrowBackIos /></IconButton>
       <IconButton onClick={handleNextDay}><ArrowForwardIos /></IconButton>
       <Column>

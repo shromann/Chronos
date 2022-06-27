@@ -13,6 +13,8 @@ import Calendar from "./Calendar";
 import getAllEvents from "../../server/getAllEvents";
 import { useAuth } from "../../contexts/AuthContext";
 
+import Algo from "./Algo";
+
 const Content = styled.div`
   width: 1200px;
   margin: 20px auto 0 auto;
@@ -48,6 +50,7 @@ const HomePage = () => {
 
   return (
     <ThemeProvider theme={theme}>
+      <Algo />
       <Header />
       <Button onClick={() => logOut()}>Log Out</Button>
       <Content>

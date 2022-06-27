@@ -12,6 +12,7 @@ const getAllEvents = async (uid) => {
         const data = doc.data();
         return {
           name: data.name,
+          focus: data.focus,
           start_time: new Date(data.start_time.seconds * 1000),
           end_time: new Date(data.end_time.seconds * 1000),
         };
