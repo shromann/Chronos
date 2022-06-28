@@ -5,7 +5,9 @@ import { DAY_VIEW, WEEK_VIEW } from "../utils/constants";
 
 export default function FormatPicker({ view, changeView }) {
   const handleChange = (e, newView) => {
-    changeView(newView);
+    if (newView !== null) {
+      changeView(newView);
+    }
   };
 
   return (

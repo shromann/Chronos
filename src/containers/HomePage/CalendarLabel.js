@@ -1,5 +1,5 @@
-import React from 'react';
-import styled from '@emotion/styled';
+import React from "react";
+import styled from "@emotion/styled";
 
 const HoursGap = styled.div`
   width: 60px;
@@ -11,18 +11,17 @@ const DateString = styled.p`
   flex-grow: 100;
 `;
 
-const CalendarLabel = ({ week }) => {
-  const options = { weekday: 'short', day: 'numeric'};
-  const labels = week.map(day => day = new Intl.DateTimeFormat('en-us', options).format(day));
+const CalendarLabel = ({ day }) => {
+  const options = { month: "short", day: "numeric" };
+  const labels = day.toLocaleDateString("en-US", options);
 
   return (
     <>
       <HoursGap></HoursGap>
-      {labels.map(day => (
-        <DateString key={day}>{day}</DateString>
-      ))}
+
+      <DateString key={day}>{labels}</DateString>
     </>
-  )
-}
+  );
+};
 
 export default CalendarLabel;

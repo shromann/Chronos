@@ -12,6 +12,7 @@ import { DEFAULT_VIEW } from "../../components/utils/constants";
 
 import getAllEvents from "../../server/getAllEvents";
 import { useAuth } from "../../contexts/AuthContext";
+import { Container } from "@mui/material";
 
 const Content = styled.div`
   width: 1200px;
@@ -50,13 +51,15 @@ const HomePage = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <Header />
-      <Button onClick={() => logOut()}>Log Out</Button>
-      <Content>
-        <FormatPicker changeView={setView} view={currView} />
-        <AddEventForm addNewEvent={handleAddEvent} uid={currentUid} />
-        <Calendar allEvents={allEvents} view={currView} />
-      </Content>
+      <Container>
+        <Header />
+        <Button onClick={() => logOut()}>Log Out</Button>
+        <Content>
+          <FormatPicker changeView={setView} view={currView} />
+          <AddEventForm addNewEvent={handleAddEvent} uid={currentUid} />
+          <Calendar allEvents={allEvents} view={currView} />
+        </Content>
+      </Container>
     </ThemeProvider>
   );
 };
