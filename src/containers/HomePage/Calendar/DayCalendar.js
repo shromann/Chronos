@@ -1,8 +1,8 @@
 import React, { useRef, useState, useEffect } from "react";
 
-import EventBox from "../../components/EventBox";
-import RowBlocks from "../../components/RowBlocks";
-import { getEventTime } from "../../components/utils/eventTime";
+import EventBox from "../../../components/EventBox";
+import RowBlocks from "../../../components/RowBlocks";
+import { getEventTime } from "../../../components/utils/eventTime";
 import NewEventForm from "./NewEventForm";
 import CalendarLabel from "./CalendarLabel";
 
@@ -125,7 +125,7 @@ const DayCalendar = ({ date, events, height, bin }) => {
       onMouseUp={addEvent}
       ref={columnEl}
     >
-      <CalendarLabel day={date} />
+      {/* <CalendarLabel day={date} /> */}
       <RowBlocks width={width} />
       {dayEvents.map((event, index) => (
         <EventBox key={index} event={event} maxHeight={height} width={width} />

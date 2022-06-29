@@ -1,6 +1,6 @@
 import React from "react";
 
-import addEvent from "../../server/addEvent";
+import addEvent from "../../../server/addEvent";
 
 import {
   Button,

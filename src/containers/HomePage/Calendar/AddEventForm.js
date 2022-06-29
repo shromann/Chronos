@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 
-import addEvent from "../../server/addEvent";
+import addEvent from "../../../server/addEvent";
 
 import Box from "@mui/material/Box";
 import plus from "./plus.svg";

@@ -11,14 +11,13 @@ const DateString = styled.p`
   flex-grow: 100;
 `;
 
-const CalendarLabel = ({ day }) => {
+const CalendarLabel = ({ day, view }) => {
   const options = { month: "short", day: "numeric" };
   const labels = day.toLocaleDateString("en-US", options);
 
   return (
     <>
       <HoursGap></HoursGap>
-
       <DateString key={day}>{labels}</DateString>
     </>
   );

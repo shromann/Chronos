@@ -5,11 +5,12 @@ import { IconButton } from "@mui/material";
 
 import Container from "./Container";
 import Column from "./Column";
-import HourLabels from "../../components/HourLabels";
+import HourLabels from "../../../components/HourLabels";
 import DayCalendar from "./DayCalendar";
 import WeekCalendar from "./WeekCalendar";
+import CalendarLabel from "./CalendarLabel";
 
-import { DAY_VIEW, WEEK_VIEW } from "../../components/utils/constants";
+import { DAY_VIEW, WEEK_VIEW } from "../../../components/utils/constants";
 
 // convert date to a list of days in the week
 const dateToWeek = (date) => {

@@ -5,9 +5,8 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 import Button from "@mui/material/Button";
 
 import FormatPicker from "../../components/FormatPicker";
-import Header from "../../components/Header";
-import AddEventForm from "./AddEventForm";
-import Calendar from "./Calendar";
+import AddEventForm from "./Calendar/AddEventForm";
+import Calendar from "./Calendar/Calendar";
 import { DEFAULT_VIEW } from "../../components/utils/constants";
 
 import getAllEvents from "../../server/getAllEvents";
@@ -52,7 +51,6 @@ const HomePage = () => {
   return (
     <ThemeProvider theme={theme}>
       <Container>
-        <Header />
         <Button onClick={() => logOut()}>Log Out</Button>
         <Content>
           <FormatPicker changeView={setView} view={currView} />
