@@ -10,7 +10,8 @@ import DayCalendar from './DayCalendar';
 import WeekCalendar from './WeekCalendar';
 import CalendarLabel from './CalendarLabel';
 
-import Algo from './Algo';
+import Algo from "../../components/utils/Algo.js";
+
 
 const getCurrentWeek = () => {
   const curr = new Date(2022, 3, 14);

@@ -13,7 +13,7 @@ import Calendar from "./Calendar";
 import getAllEvents from "../../server/getAllEvents";
 import { useAuth } from "../../contexts/AuthContext";
 
-import Algo from "./Algo";
+import Algo from "../../components/utils/Algo.js";
 
 const Content = styled.div`
   width: 1200px;
