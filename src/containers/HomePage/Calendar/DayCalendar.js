@@ -119,7 +119,11 @@ const DayCalendar = ({ date, events, height, bin }) => {
 
   return (
     <div
-      style={{ flexGrow: 100, border: "0.5px solid grey" }}
+      style={{
+        flexGrow: 100,
+        borderRight: "0.2px solid grey",
+        borderBottom: "0.2px solid grey",
+      }}
       onMouseDown={createNewEvent}
       onMouseMove={changeDuration}
       onMouseUp={addEvent}

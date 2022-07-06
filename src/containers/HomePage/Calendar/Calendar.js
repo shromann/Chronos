@@ -1,10 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
 
-import { ArrowBackIos, ArrowForwardIos } from "@mui/icons-material";
-import { IconButton } from "@mui/material";
-
-import Container from "./Container";
-import Column from "./Column";
 import HourLabels from "../../../components/HourLabels";
 import DayCalendar from "./DayCalendar";
 import WeekCalendar from "./WeekCalendar";
@@ -21,7 +16,7 @@ const dateToWeek = (date) => {
   return week;
 };
 
-const Calendar = ({ allEvents, view }) => {
+const Calendar = ({ allEvents, currView, date }) => {
   // Get height of entire calendar to calculate position of events
   const calendarRef = useRef(null);
   const [height, setHeight] = useState(0);
@@ -32,25 +27,14 @@ const Calendar = ({ allEvents, view }) => {
   useEffect(() => {
     getCalendarHeight();
   });
-
-  const [date, setDate] = useState(new Date());
-
-  const handlePrevDay = () => {
-    setDate(new Date(date.setDate(date.getDate() - 1)));
-  };
-
-  const handleNextDay = () => {
-    setDate(new Date(date.setDate(date.getDate() + 1)));
-  };
-
   const renderCalendar = () => {
-    if (view === DAY_VIEW) {
+    if (currView === DAY_VIEW) {
       return (
         <DayCalendar events={allEvents} height={height} date={date} bin={10} />
       );
     }
 
-    if (view === WEEK_VIEW) {
+    if (currView === WEEK_VIEW) {
       return (
         <WeekCalendar
           events={allEvents}
@@ -65,20 +49,25 @@ const Calendar = ({ allEvents, view }) => {
   };
 
   return (
-    <div>
-      <IconButton onClick={handlePrevDay}>
-        <ArrowBackIos />
-      </IconButton>
-      <IconButton onClick={handleNextDay}>
-        <ArrowForwardIos />
-      </IconButton>
-      <Container>
-        <Column ref={calendarRef}>
-          <HourLabels />
-          {renderCalendar()}
-        </Column>
-      </Container>
-    </div>
+    <>
+      {currView === DAY_VIEW && (
+        <div className="absolute -mt-14 ml-3 text-xl font-bold">
+          {date.toLocaleDateString("en-AU", {
+            weekday: "short",
+            day: "numeric",
+          })}
+        </div>
+      )}
+      <div className="absolute -mt-14 right-60 text-xl font-bold">
+        {date.toLocaleDateString("en-AU", {
+          month: "long",
+        })}
+      </div>
+      <div className="flex relative select-none" ref={calendarRef}>
+        <HourLabels />
+        {renderCalendar()}
+      </div>
+    </>
   );
 };
 

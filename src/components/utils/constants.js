@@ -10,4 +10,5 @@ export const DAY_TICKS = 1440;
 
 export const DAY_VIEW = 0;
 export const WEEK_VIEW = 1;
+export const MONTH_VIEW = 2;
 export const DEFAULT_VIEW = WEEK_VIEW;
